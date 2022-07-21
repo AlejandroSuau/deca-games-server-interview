@@ -1,0 +1,5 @@
+# Visual Studio Code
+.vscode
+
+# Custom build.
+build/

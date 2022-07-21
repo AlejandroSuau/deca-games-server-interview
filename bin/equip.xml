@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Objects>
+   <Object type="0xa98" id="Firebrand Staff">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj5</File>
+         <Index>0x71</Index>
+      </Texture>
+      <SlotType>17</SlotType>
+      <Tier>1</Tier>
+      <Description>A staff imbued with potent magical fire.</Description>
+      <RateOfFire>1</RateOfFire>
+      <Sound>weapon/missile_wand</Sound>
+      <Projectile>
+         <ObjectId>Fire Missile</ObjectId>
+         <Speed>180</Speed>
+         <MinDamage>10</MinDamage>
+         <MaxDamage>30</MaxDamage>
+         <LifetimeMS>475</LifetimeMS>
+         <Amplitude>0.5</Amplitude>
+         <Frequency>2</Frequency>
+      </Projectile>
+      <BagType>1</BagType>
+      <NumProjectiles>2</NumProjectiles>
+      <ArcGap>0</ArcGap>
+      <OldSound>magicShoot</OldSound>
+      <feedPower>7</feedPower>
+      <DropTradable/>
+   </Object>
+   <Object type="0xa2e" id="Fire Spray Spell">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj6</File>
+         <Index>0x40</Index>
+      </Texture>
+      <SlotType>11</SlotType>
+      <Tier>0</Tier>
+      <Description>A spell that shoots fire in all directions.</Description>
+      <Sound>spell/fire_spray</Sound>
+      <Projectile>
+         <ObjectId>Fire Bolt</ObjectId>
+         <Speed>160</Speed>
+         <MinDamage>15</MinDamage>
+         <MaxDamage>20</MaxDamage>
+         <LifetimeMS>1000</LifetimeMS>
+      </Projectile>
+      <Usable/>
+      <BagType>1</BagType>
+      <MpCost>20</MpCost>
+      <Activate>BulletNova</Activate>
+      <feedPower>5</feedPower>
+      <DropTradable/>
+   </Object>
+   <Object type="0x6ea" id="Aegis Armor">
+      <Class>Equipment</Class>
+      <Item/>
+      <Description>Onyx armor forged for use by Oryx's famed champions, giving them a sample of Oryx's furious strength.\n\nSprite Credits: Aurum</Description>
+      <ExtraTooltipData>
+         <EffectInfo name="Mad God's Rage" description="Gain 5 attack and dexterity for 8 seconds when hit under 300 HP."/>
+      </ExtraTooltipData>
+      <Texture>
+         <File>d2LofiObjEmbed</File>
+         <Index>0x1ce</Index>
+      </Texture>
+      <SlotType>7</SlotType>
+      <ActivateOnEquip stat="21" amount="21">IncrementStat</ActivateOnEquip>
+      <ActivateOnEquip stat="20" amount="4">IncrementStat</ActivateOnEquip>
+      <OnPlayerHitActivate amount="5" hpMinThreshold="300" proc="1" cooldown="0" duration="8" stat="20">StatBoostSelf</OnPlayerHitActivate>
+      <OnPlayerHitActivate amount="5" hpMinThreshold="300" proc="1" cooldown="0" duration="8" stat="28">StatBoostSelf</OnPlayerHitActivate>
+      <BagType>6</BagType>
+      <FameBonus>5</FameBonus>
+      <feedPower>750</feedPower>
+      <Soulbound/>
+   </Object>
+   <Object type="0xa97" id="Energy Staff">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj5</File>
+         <Index>0x70</Index>
+      </Texture>
+      <SlotType>17</SlotType>
+      <Tier>0</Tier>
+      <Description>A magical wooden staff topped with a white crystal.</Description>
+      <RateOfFire>1</RateOfFire>
+      <Sound>weapon/fire_wand</Sound>
+      <Projectile>
+         <ObjectId>Grey Missile</ObjectId>
+         <Speed>180</Speed>
+         <MinDamage>10</MinDamage>
+         <MaxDamage>25</MaxDamage>
+         <LifetimeMS>475</LifetimeMS>
+         <Amplitude>0.5</Amplitude>
+         <Frequency>2</Frequency>
+      </Projectile>
+      <BagType>1</BagType>
+      <NumProjectiles>2</NumProjectiles>
+      <ArcGap>0</ArcGap>
+      <OldSound>magicShoot</OldSound>
+      <feedPower>5</feedPower>
+      <DropTradable/>
+   </Object>
+   <Object type="0x2059" id="Helm of the Tribune">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>lofiObj6</File>
+         <Index>0x67</Index>
+      </Texture>
+      <SlotType>16</SlotType>
+      <Tier>7</Tier>
+      <Description>An ashen helm of regal grandeur, whose wearers have upraised the greatest legions and inspired total domination.</Description>
+      <ActivateOnEquip stat="21" amount="12">IncrementStat</ActivateOnEquip>
+      <ActivateOnEquip stat="0" amount="40">IncrementStat</ActivateOnEquip>
+      <ActivateOnEquip stat="3" amount="40">IncrementStat</ActivateOnEquip>
+      <Usable/>
+      <BagType>9</BagType>
+      <FameBonus>5</FameBonus>
+      <MpCost>90</MpCost>
+      <Activate effect="Berserk" duration="6.5" range="4">ConditionEffectAura</Activate>
+      <Activate effect="Speedy" duration="6.5">ConditionEffectSelf</Activate>
+      <Cooldown>7.5</Cooldown>
+      <Soulbound/>
+      <feedPower>570</feedPower>
+   </Object>
+   <Object type="0x4f4f" id="2WizardST1" setType="0x4f52" setName="Slurp Scion Wizard Set">
+      <DisplayId>Slurpian Sea Scroll</DisplayId>
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>d2LofiObjEmbed</File>
+         <Index>0x251</Index>
+      </Texture>
+      <SlotType>11</SlotType>
+      <Description>An enchanted parchment, written in the Slurpian dialect. Its magic commands the tides, allowing one to propel their own movement.</Description>
+      <ExtraTooltipData>
+         <EffectInfo description="650 - 950" name="Blast Damage"/>
+         <EffectInfo description="3 tiles" name="Blast Radius"/>
+      </ExtraTooltipData>
+      <Sound>spell/magic_nova</Sound>
+      <Usable/>
+      <BagType>8</BagType>
+      <FameBonus>5</FameBonus>
+      <feedPower>850</feedPower>
+      <MpCost>120</MpCost>
+      <Activate objectId="Slurp Spell Explosion" throwTime="0" color="0x01FFFF">ObjectToss</Activate>
+      <Activate amount="25" duration="2" stat="22">StatBoostSelf</Activate>
+      <Soulbound/>
+   </Object>
+   <Object type="0xfda" id="Mask of Anubis">
+      <Class>Equipment</Class>
+      <Item/>
+      <Texture>
+         <File>d2LofiObjEmbed</File>
+         <Index>0x21d</Index>
+      </Texture>
+      <SlotType>9</SlotType>
+      <Description>A relic of the Tomb of the Ancients, once used by holy worshipers in ceremonies.\n\nSprite Credits: Beige</Description>
+      <ActivateOnEquip stat="0" amount="180">IncrementStat</ActivateOnEquip>
+      <BagType>9</BagType>
+      <FameBonus>5</FameBonus>
+      <feedPower>325</feedPower>
+      <Soulbound/>
+   </Object>
+</Objects>
