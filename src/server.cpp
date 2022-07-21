@@ -34,18 +34,17 @@ void Server::Listen() {
 
                 bytes_received = recv(client, buffer, MAX_BUFFER_SIZE, 0);
                 if (bytes_received > 0) {
-                    auto response = message_handler_.GetResponseToMessage(
-                        std::string(buffer, 0, bytes_received));
-                    Send(client, response);
+                    std::string response;
+                    message_handler_.FillResponseToMessage(
+                        std::string(buffer, 0, bytes_received),
+                        response);
+
+                    send(client, response.c_str(), response.size() + 1, 0);
                 }
             } while (bytes_received > 0);
             closesocket(client);
         }
     }
-}
-
-void Server::Send(const SOCKET client_socket, const std::string message) {
-    send(client_socket, message.c_str(), message.size() + 1, 0);
 }
 
 void Server::Cleanup() {

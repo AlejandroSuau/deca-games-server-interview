@@ -5,14 +5,11 @@
 
 class CharacterEquipmentLoader {
 public:
-    CharacterEquipmentLoader();
+    static void LoadItemIds(const std::string& username, 
+                            const std::string& password,
+                            std::unordered_set<std::size_t>& item_ids);
 
-    int LoadItemIds(std::string username, std::string password);
-
-    const std::unordered_set<std::size_t>& GetItemIds() const;
-
-private:
-    std::unordered_set<std::size_t> item_ids_;
-
-    int ParseAPIResponse(const char* xml_response);
+private:    
+    static void ParseLoadedResult(const char* xml_response,
+                                  std::string& parsed_result);
 };

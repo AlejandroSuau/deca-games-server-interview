@@ -16,13 +16,13 @@
 class Server {
 public:
     Server(std::string ip_address, const int port);
-
     ~Server();
+
+    Server(const Server&) = delete;
+    Server& operator=(const Server&) = delete;
 
     bool Init();
     void Listen();
-    void Send(const SOCKET client_socket, const std::string message);
-
     void Cleanup();
 
 private:

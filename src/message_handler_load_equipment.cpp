@@ -1,32 +1,57 @@
 #include "message_handler_load_equipment.h"
 
-#include <sstream>
+#include <assert.h>
 
 #include "local_equipment.h"
+#include "character_equipment_loader.h"
 
 
 MessageHandlerLoadEquipment::MessageHandlerLoadEquipment()
     : regex_("^load ([\\w-\\.]+@(?:[\\w-]+\\.)+[\\w-]{2,4}) ([\\w]+) (?:\r\n)?$") {}
 
-std::string MessageHandlerLoadEquipment::GetResponseToMessage(
-        std::string message) {
+void MessageHandlerLoadEquipment::FillResponseToMessage(
+        const std::string& message, std::string& response) {
     std::smatch matches;
-    if (!std::regex_search(message, matches, regex_))
-        return "No matching pattern";
-
-    std::string username = matches[1].str();
-    std::string password = matches[2].str();
-    // TODO: Should check "LoadItemIds" result. Maybe status_code error.
-    character_equipment_loader_.LoadItemIds(username, password);
-    const auto item_ids = character_equipment_loader_.GetItemIds();
-
-    const auto matching_item_names = LocalEquipment::GetInstance().GetItemNames(
-        item_ids);
-    std::stringstream item_names;
-    for (std::size_t i = 0; i < matching_item_names.size(); ++i) {
-        if (i > 0) item_names << ", ";
-        item_names << matching_item_names[i];
+    if (!std::regex_search(message, matches, regex_)) {
+        response = "Wrong message format";
+        return;
     }
 
-    return item_names.str();
+    const std::string username = matches[1].str();
+    const std::string password = matches[2].str();
+    std::unordered_set<std::size_t> loaded_items_ids;
+    
+    try {
+        CharacterEquipmentLoader::LoadItemIds(
+            username, password, loaded_items_ids);
+        
+        std::ostringstream response_message;
+        FillStreamWithMatchingItemNames(response_message, loaded_items_ids);
+        response = response_message.str();
+    } catch(std::runtime_error e) {
+        response = e.what();
+    } catch(...) {
+        assert(false && "Unexpected app behaviour");
+    }
 }
+
+void MessageHandlerLoadEquipment::FillStreamWithMatchingItemNames(
+        std::ostringstream& ss,
+        const std::unordered_set<std::size_t>& item_ids) {
+    const auto& local_items_map 
+        = LocalEquipment::GetInstance().GetItemIdNameUnorderedMap();
+    bool did_match_item = false;
+    for (const auto item_id : item_ids) {
+        const auto item_found = local_items_map.find(item_id);
+        if (item_found == local_items_map.end()) continue;
+
+        if (did_match_item) ss << ",";            
+        ss << item_found->second;
+        did_match_item = true;
+    }
+
+    if (!did_match_item) ss << "No matching items";
+}
+       
+        
+        

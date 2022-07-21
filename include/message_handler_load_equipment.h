@@ -2,17 +2,23 @@
 
 #include <string>
 #include <regex>
-
-#include "character_equipment_loader.h"
+#include <unordered_set>
+#include <sstream>
 
 
 class MessageHandlerLoadEquipment {
 public:
     MessageHandlerLoadEquipment();
+    
+    MessageHandlerLoadEquipment(const MessageHandlerLoadEquipment&) = delete;
+    MessageHandlerLoadEquipment& operator=(const MessageHandlerLoadEquipment&) = delete;
 
-    std::string GetResponseToMessage(std::string message);
+    void FillResponseToMessage(const std::string& message, std::string& response);
 
 private:
     const std::regex regex_;
-    CharacterEquipmentLoader character_equipment_loader_;
+
+    void FillStreamWithMatchingItemNames(
+        std::ostringstream& ss,
+        const std::unordered_set<std::size_t>& item_ids);
 };
