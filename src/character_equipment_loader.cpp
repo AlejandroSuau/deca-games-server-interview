@@ -17,35 +17,36 @@ void CharacterEquipmentLoader::LoadItemIds(
         cpr::Parameters{{"guid", username}, {"password", password}});
 
     if (api_response.status_code != 200)
-        throw std::runtime_error("API Server is unavailable");
+        throw ExceptionAPIServerUnavailable();
 
-    std::string equipment_string;
-    ParseLoadedResult(api_response.text.c_str(), equipment_string);
+    std::stringstream parsed_result_ss;
+    ParseLoadedResult(api_response.text.c_str(), parsed_result_ss);
     
     const auto invalid_item_id = static_cast<std::size_t>(-1);
-    const std::string delimiter = ",";
-    std::size_t pos = 0;
-    while ((pos = equipment_string.find(delimiter)) != std::string::npos) {
-        std::size_t item_id;
-        sscanf_s(equipment_string.substr(0, pos).c_str(), "%zu", &item_id);
-        if (item_id != invalid_item_id) item_ids.insert(item_id);
-
-        equipment_string.erase(0, pos + delimiter.length());
+    while(parsed_result_ss.good()) {
+        std::string token;
+        getline(parsed_result_ss, token, ',');
+        
+        if (!token.empty()) {
+            std::size_t item_id;
+            sscanf_s(token.c_str(), "%zu", &item_id);
+            if (item_id != invalid_item_id) item_ids.insert(item_id);
+        }
     }
 }
 
 void CharacterEquipmentLoader::ParseLoadedResult(const char* xml_response,
-                                                 std::string& parsed_result) {
+                                                 std::stringstream& parsed_result) {
     pugi::xml_document document;
     pugi::xml_parse_result parse_result = document.load_string(xml_response);
     if (!parse_result)
-        throw std::runtime_error("Unexpected XML format");
+        throw ExceptionUnexpectedXMLFormat();
 
     if (!document.child("Error").text().empty())
-        throw std::runtime_error("Account not found");
+        throw ExceptionAccountNotFound();
 
     pugi::xml_node equipment_node = document.select_node(
         "//Chars/Char[1]/Equipment").node();
-    parsed_result = equipment_node.first_child().value();
+    parsed_result << equipment_node.first_child().value();
 }
 

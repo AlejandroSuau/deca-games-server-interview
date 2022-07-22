@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <memory>
 
 // #define this before any windows headers are included
 #define _WIN32_WINNT _WIN32_WINNT_WIN10 // Windows 10.0
@@ -15,7 +14,7 @@
 
 class Server {
 public:
-    Server(std::string ip_address, const int port);
+    Server(const std::string ip_address, const int port);
     ~Server();
 
     Server(const Server&) = delete;

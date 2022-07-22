@@ -7,7 +7,7 @@
 
 
 MessageHandlerLoadEquipment::MessageHandlerLoadEquipment()
-    : regex_("^load ([\\w-\\.]+@(?:[\\w-]+\\.)+[\\w-]{2,4}) ([\\w]+) (?:\r\n)?$") {}
+    : regex_("^load ([\\w-\\.]+@(?:[\\w-]+\\.)+[\\w-]{2,4}) ([\\w]+)(?:\\s\r\n)?$") {}
 
 void MessageHandlerLoadEquipment::FillResponseToMessage(
         const std::string& message, std::string& response) {
@@ -28,7 +28,7 @@ void MessageHandlerLoadEquipment::FillResponseToMessage(
         std::ostringstream response_message;
         FillStreamWithMatchingItemNames(response_message, loaded_items_ids);
         response = response_message.str();
-    } catch(std::runtime_error e) {
+    } catch(ExceptionCharacterEquipmentLoader e) {
         response = e.what();
     } catch(...) {
         assert(false && "Unexpected app behaviour");

@@ -1,6 +1,5 @@
 #include "server.h"
 
-#include <iostream>
 
 Server::Server(std::string ip_address, const int port) 
     : ip_address_(ip_address), port_(port) {}
