@@ -31,6 +31,15 @@ target_link_libraries(character_equipment_loader
 )
 
 # message_handler_load_equipment
+add_library(message_handler
+    message_handler.cpp
+)
+
+target_include_directories(message_handler
+    PUBLIC
+    "${PROJECT_SOURCE_DIR}/include"
+)
+
 add_library(message_handler_load_equipment
     message_handler_load_equipment.cpp
 )
@@ -42,6 +51,7 @@ target_include_directories(message_handler_load_equipment
 
 target_link_libraries(message_handler_load_equipment
     PUBLIC
+    message_handler
     character_equipment_loader
     local_equipment
 )

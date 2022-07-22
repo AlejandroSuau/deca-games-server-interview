@@ -1,8 +1,12 @@
 #include "server.h"
 
+#include "message_handler_load_equipment.h"
+
 
 Server::Server(std::string ip_address, const int port) 
-    : ip_address_(ip_address), port_(port) {}
+    : ip_address_(ip_address),
+      port_(port),
+      message_handler_(std::make_unique<MessageHandlerLoadEquipment>()) {}
 
 Server::~Server() {
     Cleanup();
@@ -33,10 +37,9 @@ void Server::Listen() {
 
                 bytes_received = recv(client, buffer, MAX_BUFFER_SIZE, 0);
                 if (bytes_received > 0) {
+                    std::string message = std::string(buffer, 0, bytes_received);
                     std::string response;
-                    message_handler_.FillResponseToMessage(
-                        std::string(buffer, 0, bytes_received),
-                        response);
+                    message_handler_->ResponseToMessage(message, response);
 
                     send(client, response.c_str(), response.size() + 1, 0);
                 }

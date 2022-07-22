@@ -5,20 +5,20 @@
 #include <unordered_set>
 #include <sstream>
 
+#include "message_handler.h"
 
-class MessageHandlerLoadEquipment {
+
+class MessageHandlerLoadEquipment : public MessageHandler {
 public:
     MessageHandlerLoadEquipment();
+    ~MessageHandlerLoadEquipment() = default;
     
-    MessageHandlerLoadEquipment(const MessageHandlerLoadEquipment&) = delete;
+    MessageHandlerLoadEquipment(const MessageHandlerLoadEquipment&) noexcept = delete;
     MessageHandlerLoadEquipment& operator=(const MessageHandlerLoadEquipment&) = delete;
 
-    void FillResponseToMessage(const std::string& message, std::string& response);
+    MessageHandlerLoadEquipment(MessageHandlerLoadEquipment&&) noexcept = delete;
+    MessageHandlerLoadEquipment& operator=(MessageHandlerLoadEquipment&&) = delete;
 
-private:
-    const std::regex regex_;
-
-    void FillStreamWithMatchingItemNames(
-        std::ostringstream& ss,
-        const std::unordered_set<std::size_t>& item_ids);
+    void FillResponseMessage(
+        const std::smatch& matches, std::string& response) override;
 };

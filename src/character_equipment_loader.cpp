@@ -23,10 +23,8 @@ void CharacterEquipmentLoader::LoadItemIds(
     ParseLoadedResult(api_response.text.c_str(), parsed_result_ss);
     
     const auto invalid_item_id = static_cast<std::size_t>(-1);
-    while(parsed_result_ss.good()) {
-        std::string token;
-        getline(parsed_result_ss, token, ',');
-        
+    std::string token;
+    while (std::getline(parsed_result_ss, token, ',')) {
         if (!token.empty()) {
             std::size_t item_id;
             sscanf_s(token.c_str(), "%zu", &item_id);
