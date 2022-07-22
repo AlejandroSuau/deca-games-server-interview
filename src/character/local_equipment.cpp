@@ -5,10 +5,6 @@
 #include "pugixml.hpp"
 
 
-// We assume that the equip.xml has a correct structure.
-// In addition, the code will end execution with a fail assert
-// if the equip.xml is not found.
-
 LocalEquipment::LocalEquipment() {
     pugi::xml_document document_;
     pugi::xml_parse_result parse_result = document_.load_file("bin/equip.xml");

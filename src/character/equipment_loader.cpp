@@ -1,7 +1,7 @@
-#include "character_equipment_loader.h"
+#include "equipment_loader.h"
+#include "equipment_loader_exceptions.h"
 
 #include <cstdio>
-#include <unordered_set>
 
 #include <cpr/cpr.h>
 

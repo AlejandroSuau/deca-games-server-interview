@@ -1,90 +1,37 @@
-# local_equipment
-add_library(local_equipment
-    local_equipment.cpp
+set(BINARY ${CMAKE_PROJECT_NAME})
+
+set(SOURCES
+    character/equipment_loader_exceptions.cpp
+    character/equipment_loader.cpp
+    character/local_equipment.cpp
+    server/message_handler.cpp
+    server/message_handler_load_equipment.cpp
+    server/server.cpp
+    main.cpp
 )
 
-target_link_libraries(local_equipment
-    PUBLIC
-    pugixml
-)
+add_executable(${BINARY}_run ${SOURCES})
 
-target_include_directories(local_equipment
-    PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
-)
+add_library(${BINARY}_lib STATIC ${SOURCES})
 
-# character_equipment_loader
-add_library(character_equipment_loader
-    character_equipment_loader.cpp
-)
-
-target_include_directories(character_equipment_loader
+target_include_directories(${BINARY}_run
     PUBLIC
     "${PROJECT_SOURCE_DIR}/include"
 )
 
-target_link_libraries(character_equipment_loader
+target_link_libraries(${BINARY}_run
     PUBLIC
     cpr
     pugixml
-    local_equipment
 )
 
-# message_handler_load_equipment
-add_library(message_handler
-    message_handler.cpp
-)
-
-target_include_directories(message_handler
+target_include_directories(${BINARY}_lib
     PUBLIC
     "${PROJECT_SOURCE_DIR}/include"
 )
 
-add_library(message_handler_load_equipment
-    message_handler_load_equipment.cpp
-)
-
-target_include_directories(message_handler_load_equipment
+target_link_libraries(${BINARY}_lib
     PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
+    cpr
+    pugixml
 )
-
-target_link_libraries(message_handler_load_equipment
-    PUBLIC
-    message_handler
-    character_equipment_loader
-    local_equipment
-)
-
-# server
-add_library(server
-    server.cpp
-)
-
-target_include_directories(server
-    PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
-)
-
-target_link_libraries(server
-    PUBLIC
-    message_handler_load_equipment
-)
-
-# Main executable.
-add_executable("${CMAKE_PROJECT_NAME}" main.cpp)
-target_include_directories("${CMAKE_PROJECT_NAME}"
-    PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
-)
-
-target_include_directories("${CMAKE_PROJECT_NAME}"
-    PRIVATE
-    server
-)
-
-target_link_libraries("${CMAKE_PROJECT_NAME}"
-    PRIVATE
-    server
-)
-

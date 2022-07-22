@@ -3,7 +3,8 @@
 #include <unordered_set>
 #include <string>
 
-#include "character_equipment_loader.h"
+#include "equipment_loader.h"
+#include "equipment_loader_exceptions.h"
 
 
 TEST(CharacterEquipmentLoaderTests, AccountNotFound) {

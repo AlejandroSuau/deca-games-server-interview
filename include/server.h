@@ -3,10 +3,10 @@
 #include <string>
 #include <memory>
 
-// #define this before any windows headers are included
-#define _WIN32_WINNT _WIN32_WINNT_WIN10 // Windows 10.0
+// Definition to allow Windows 10 compilation.
+#define _WIN32_WINNT _WIN32_WINNT_WIN10
 #include <Ws2tcpip.h>
-#pragma comment( lib, "Ws2_32.lib" ) // link with Ws2_32.lib
+#pragma comment( lib, "Ws2_32.lib" )
 
 #include "message_handler.h"
 

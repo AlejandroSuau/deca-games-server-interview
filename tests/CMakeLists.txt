@@ -8,10 +8,4 @@ add_executable(${BINARY} ${TEST_SOURCES})
 
 add_test(NAME ${BINARY} COMMAND ${BINARY})
 
-target_link_libraries(${BINARY}
-    PUBLIC
-    local_equipment
-    character_equipment_loader
-    message_handler_load_equipment
-    gtest
-)
+target_link_libraries(${BINARY} PUBLIC ${CMAKE_PROJECT_NAME}_lib gtest)

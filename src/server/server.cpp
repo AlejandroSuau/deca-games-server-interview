@@ -3,7 +3,7 @@
 #include "message_handler_load_equipment.h"
 
 
-Server::Server(std::string ip_address, const int port) 
+Server::Server(const std::string ip_address, const int port) 
     : ip_address_(ip_address),
       port_(port),
       message_handler_(std::make_unique<MessageHandlerLoadEquipment>()) {}
