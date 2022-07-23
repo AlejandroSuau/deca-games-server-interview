@@ -42,7 +42,7 @@ echo load alejandro.suau@gmail.com WantToBePartOfDECAGames | nc 127.0.0.1 9090
 
 ```
 echo load backend-testRTG@decagames.com backendtestRTG1 | nc 127.0.0.1 9090
-// Order may vary.
 
+// Order may vary.
 // Expected response: Firebrand Staff,Fire Spray Spell,Energy Staff
 ```
