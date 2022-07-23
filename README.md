@@ -1,6 +1,6 @@
 # DECA Games Challenge
 
-_This is a socket server (running on localhost with port 9090) developed for Windows 10 for DECA Games company interview.
+_This is a socket server (running on localhost with port 9090) developed for Windows 10 for DECA Games company interview._
 
 ## Used technologies.
 
@@ -17,16 +17,16 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles"
 cmake --build .
 ```
 
-### For running tests:
+### Running tests:
 ```
 bin\DecaGamesServer_tst.exe
 ```
 
-### For running server:
+### Running server:
 ```
 bin\DecaGamesServer_run.exe
 ```
-_Examples of sending messages to the server:
+_Examples of sending messages to the server:_
 
 ```
 echo This is a wrong format message | nc 127.0.0.1 9090
