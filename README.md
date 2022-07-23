@@ -29,7 +29,7 @@ bin\DecaGamesServer_run.exe
 _Examples of sending messages to the server:_
 
 ```
-echo This is a wrong format message | nc 127.0.0.1 9090
+echo Alejandro Suau want to be part of DECA Games | nc 127.0.0.1 9090
 
 // Expected response: Wrong message format
 ```
