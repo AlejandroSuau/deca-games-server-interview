@@ -3,7 +3,8 @@
 #include <string>
 #include <memory>
 
-// Definition to allow Windows 10 compilation.
+// Should define this variable to avoid:
+// error: 'inet_pton' was not declared in this scope;
 #define _WIN32_WINNT _WIN32_WINNT_WIN10
 #include <Ws2tcpip.h>
 #pragma comment( lib, "Ws2_32.lib" )
