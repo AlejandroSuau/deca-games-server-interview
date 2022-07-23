@@ -1,8 +1,8 @@
 #include "message_handler.h"
 
 
-MessageHandler::MessageHandler(const std::string& regex_pattern)
-    : regex_(regex_pattern) {}
+MessageHandler::MessageHandler(const std::string_view regex_pattern)
+    : regex_(regex_pattern.data()) {}
 
 void MessageHandler::ResponseToMessage(const std::string& message,
                                        std::string& response) {
