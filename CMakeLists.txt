@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(DecaGamesServer)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 configure_file(bin/equip.xml ${CMAKE_BINARY_DIR}/bin/equip.xml COPYONLY)
 
