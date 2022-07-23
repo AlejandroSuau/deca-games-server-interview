@@ -24,22 +24,25 @@ bin\DecaGamesServer_tst.exe
 
 ### For running server:
 ```
->>bin\DecaGamesServer_run.exe
+bin\DecaGamesServer_run.exe
 ```
 _Examples of sending messages to the server:
 
 ```
->> echo This is a wrong format message | nc 127.0.0.1 9090
+echo This is a wrong format message | nc 127.0.0.1 9090
+
 // Expected response: Wrong message format
 ```
 
 ```
->> echo load alejandro.suau@gmail.com WantToBePartOfDECAGames | nc 127.0.0.1 9090
+echo load alejandro.suau@gmail.com WantToBePartOfDECAGames | nc 127.0.0.1 9090
+
 // Expected response: Account not found.
 ```
 
 ```
 echo load backend-testRTG@decagames.com backendtestRTG1 | nc 127.0.0.1 9090
 // Order may vary.
+
 // Expected response: Firebrand Staff,Fire Spray Spell,Energy Staff
 ```
