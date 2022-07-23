@@ -1,9 +1,11 @@
 #include "server.h"
 
+#include <string>
+
 #include "message_handler_load_equipment.h"
 
 
-Server::Server(const std::string ip_address, const int port) 
+Server::Server(const std::string_view ip_address, const int port) 
     : ip_address_(ip_address),
       port_(port),
       message_handler_(std::make_unique<MessageHandlerLoadEquipment>()) {}
@@ -60,7 +62,7 @@ SOCKET Server::CreateListeningSocket() {
     sockaddr_in hint;
     hint.sin_family = AF_INET;
     hint.sin_port = htons(port_);
-    inet_pton(AF_INET, ip_address_.c_str(), &hint.sin_addr);
+    inet_pton(AF_INET, ip_address_.data(), &hint.sin_addr);
 
     int binding_res = bind(listening, (sockaddr*)&hint, sizeof(hint));
     if (binding_res != SOCKET_ERROR) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <string_view>
 #include <memory>
 
 // Should define this variable to avoid:
@@ -16,7 +16,7 @@
 
 class Server {
 public:
-    Server(const std::string ip_address,
+    Server(const std::string_view ip_address,
            const int port);
     ~Server();
 
@@ -31,7 +31,7 @@ public:
     void Cleanup();
 
 private:
-    const std::string ip_address_;
+    const std::string_view ip_address_;
     const int port_;
     std::unique_ptr<MessageHandler> message_handler_;
 
