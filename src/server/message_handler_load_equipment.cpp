@@ -1,6 +1,7 @@
 #include "message_handler_load_equipment.h"
 
 #include <assert.h>
+#include <string_view>
 
 #include "local_equipment.h"
 #include "equipment_loader.h"
@@ -23,11 +24,12 @@ void MessageHandlerLoadEquipment::FillResponseMessage(
         const auto& local_items_map 
             = LocalEquipment::GetInstance().GetItemIdNameUnorderedMap();
         bool did_match_any_item = false;
+        const std::string_view separator = ",";
         for (const auto item_id : loaded_items_ids) {
             const auto item_found = local_items_map.find(item_id);
             if (item_found == local_items_map.end()) continue;
 
-            if (did_match_any_item) response += ",";
+            if (did_match_any_item) response += separator.data();
             response += item_found->second;
             did_match_any_item = true;
         }
