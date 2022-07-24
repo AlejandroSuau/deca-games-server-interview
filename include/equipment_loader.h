@@ -13,5 +13,5 @@ public:
 
 private:    
     static void ParseLoadedResult(const std::string_view xml_response,
-                                  std::stringstream& parsed_result);
+                                  std::string& parsed_result);
 };
