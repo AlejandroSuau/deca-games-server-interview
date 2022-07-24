@@ -9,12 +9,12 @@
 
 
 void CharacterEquipmentLoader::LoadItemIds(
-        const std::string& username,
-        const std::string& password,
+        const std::string_view username,
+        const std::string_view password,
         std::unordered_set<std::size_t>& item_ids) {
     cpr::Response api_response = cpr::Get(
         cpr::Url{"https://www.realmofthemadgod.com/char/listInfo"},
-        cpr::Parameters{{"guid", username}, {"password", password}});
+        cpr::Parameters{{"guid", username.data()}, {"password", password.data()}});
 
     if (api_response.status_code != 200)
         throw ExceptionAPIServerUnavailable();
@@ -33,10 +33,10 @@ void CharacterEquipmentLoader::LoadItemIds(
     }
 }
 
-void CharacterEquipmentLoader::ParseLoadedResult(const char* xml_response,
+void CharacterEquipmentLoader::ParseLoadedResult(const std::string_view xml_response,
                                                  std::stringstream& parsed_result) {
     pugi::xml_document document;
-    pugi::xml_parse_result parse_result = document.load_string(xml_response);
+    pugi::xml_parse_result parse_result = document.load_string(xml_response.data());
     if (!parse_result)
         throw ExceptionUnexpectedXMLFormat();
 
