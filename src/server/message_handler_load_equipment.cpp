@@ -13,8 +13,8 @@ MessageHandlerLoadEquipment::MessageHandlerLoadEquipment()
 
 void MessageHandlerLoadEquipment::FillResponseMessage(
         const std::smatch& matches, std::string& response) {
-    const std::string_view username{matches[1].str()};
-    const std::string_view password{matches[2].str()};
+    const std::string username = matches[1].str();
+    const std::string password = matches[2].str();
     std::unordered_set<std::size_t> loaded_items_ids;
     
     try {
