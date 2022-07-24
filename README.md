@@ -4,7 +4,7 @@ _This is a socket server (running on localhost with port 9090) developed for Win
 
 ## Used technologies.
 
-* C++14.
+* C++17.
 * CMake.
 * [pugixml](https://github.com/zeux/pugixml)
 * [libcpr](https://github.com/libcpr/cpr)
