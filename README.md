@@ -5,11 +5,18 @@ _This is a socket server (running on localhost with port 9090) developed for Win
 ## Used technologies.
 
 * C++14.
+* CMake.
 * [pugixml](https://github.com/zeux/pugixml)
 * [libcpr](https://github.com/libcpr/cpr)
 * [googletest](https://github.com/google/googletest)
 
-## How to run (Windows 10).
+## How to run.
+
+_Inside /bin folder are 2 executables available:_
+* Run server: DecaGamesServer_run.exe
+* Run tests: DecaGamesServer_tst.exe
+
+## How to build and compiler (Windows 10).
 
 ```
 mkdir build && cd build
