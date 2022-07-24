@@ -13,5 +13,6 @@ public:
 
 private:    
     static void ParseLoadedResult(const std::string_view xml_response,
-                                  std::string& parsed_result);
+                                  std::unordered_set<std::size_t>& item_ids);
+    
 };
