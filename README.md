@@ -17,14 +17,16 @@ cmake .. -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles"
 cmake --build .
 ```
 
+_For running it from terminal, it is necessary to be in the same .exe folder._
+
 ### Running tests:
 ```
-bin\DecaGamesServer_tst.exe
+cd bin && DecaGamesServer_tst.exe
 ```
 
 ### Running server:
 ```
-bin\DecaGamesServer_run.exe
+cd bin && DecaGamesServer_run.exe
 ```
 _Examples of sending messages to the server:_
 

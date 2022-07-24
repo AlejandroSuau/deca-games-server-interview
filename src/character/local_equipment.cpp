@@ -1,5 +1,6 @@
 #include "local_equipment.h"
 
+#include <filesystem>
 #include <assert.h>
 
 #include "pugixml.hpp"
@@ -7,7 +8,9 @@
 
 LocalEquipment::LocalEquipment() {
     pugi::xml_document document_;
-    pugi::xml_parse_result parse_result = document_.load_file("bin/equip.xml");
+    std::string filename = std::filesystem::current_path().u8string();
+    filename += "\\equip.xml";
+    pugi::xml_parse_result parse_result = document_.load_file(filename.c_str());
     if (!parse_result) assert(false && "equip.xml could not be loaded.");
 
     pugi::xpath_node_set items = document_.select_nodes("Objects/Object");
