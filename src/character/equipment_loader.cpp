@@ -2,6 +2,7 @@
 #include "equipment_loader_exceptions.h"
 
 #include <cstdio>
+#include <string>
 
 #include <cpr/cpr.h>
 
@@ -20,7 +21,7 @@ void CharacterEquipmentLoader::LoadItemIds(
         throw ExceptionAPIServerUnavailable();
 
     std::stringstream parsed_result_ss;
-    ParseLoadedResult(api_response.text.c_str(), parsed_result_ss);
+    ParseLoadedResult(api_response.text, parsed_result_ss);
     
     const auto invalid_item_id = static_cast<std::size_t>(-1);
     std::string token;

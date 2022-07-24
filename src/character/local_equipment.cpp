@@ -13,10 +13,10 @@ LocalEquipment::LocalEquipment() {
     pugi::xpath_node_set items = document_.select_nodes("Objects/Object");
     for (const auto node : items) {
         const auto item = node.node();
-        const char* item_id_in_hex = item.attribute("type").value();
+        const auto* item_id_in_hex = item.attribute("type").value();
         const std::size_t item_id = strtoul(item_id_in_hex, NULL, 16);
-        const char* item_name = item.attribute("id").value();
-        item_id_name_unordered_map_.insert({item_id, item_name});
+        item_id_name_unordered_map_.insert(
+            {item_id, item.attribute("id").value()});
     }
 }
 
