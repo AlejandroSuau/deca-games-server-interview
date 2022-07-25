@@ -9,6 +9,11 @@
 #include "pugixml.hpp"
 
 
+const CharacterEquipmentLoader& CharacterEquipmentLoader::GetInstance() {
+    static CharacterEquipmentLoader character_equipment_loader;
+    return character_equipment_loader;
+}
+
 void CharacterEquipmentLoader::LoadItemIds(
         const std::string_view username,
         const std::string_view password,

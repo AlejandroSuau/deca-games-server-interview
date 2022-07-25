@@ -18,7 +18,7 @@ void MessageHandlerLoadEquipment::FillResponseMessage(
     std::unordered_set<std::size_t> loaded_items_ids;
     
     try {
-        CharacterEquipmentLoader::LoadItemIds(
+        CharacterEquipmentLoader::GetInstance().LoadItemIds(
             username, password, loaded_items_ids);
         
         const auto& local_items_map 
